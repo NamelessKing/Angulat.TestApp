@@ -2,6 +2,7 @@
 import { ApplicationRef, Component } from "@angular/core";
 import { Model } from "./repository.model";
 import { Product } from "./product.model";
+import { NgForm } from "@angular/forms";
 
 @Component({
   selector: "app",
@@ -12,6 +13,8 @@ export class ProductComponent {
 
   model: Model = new Model();
   selectedProduct: string;
+  newProduct: Product = new Product();
+  formSubmitted: boolean;
 
 
   //constructor(ref: ApplicationRef) {
@@ -31,9 +34,60 @@ export class ProductComponent {
     return this.model.getProducts();
   }
 
-  getSelected(product:Product):boolean {
+  getSelected(product: Product): boolean {
     return product.name == this.selectedProduct;
   }
+
+  get jsonProduct() {
+    return JSON.stringify(this.newProduct);
+  }
+
+  addProduct(product: Product) {
+    console.log("new product: " + this.jsonProduct);
+  }
+
+
+  getValidationMessages(state: any, thingName?: string) {
+
+    let thing: string = state.path || thingName;
+    let messages: string[] = [];
+
+    if (state.errors) {
+      for (let errorName in state.errors) {
+
+        switch (errorName) {
+          case "required":
+            messages.push(`You must enter a ${thing}`);
+            break;
+          case "minlength":
+            messages.push(`A ${thing} must be at least
+                      ${state.errors['minlength'].requiredLength} characters`);
+            break;
+          case "pattern":
+            messages.push(`The ${thing} contains illegal characters`);
+            break;
+
+        }
+
+      }
+    }
+    return messages;
+  }
+
+  submitForm(form: NgForm) {
+    this.formSubmitted = true;
+
+    if (form.valid) {
+      this.addProduct(this.newProduct);
+
+      this.newProduct = new Product();//resetto new product
+      form.reset();//resetto form sia front che back
+
+      this.formSubmitted = false;
+    }
+  }
+
+  
 
   //getProductCount(): number {
   //  console.log("getProductCount() invoked");
