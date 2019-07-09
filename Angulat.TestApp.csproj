@@ -30,6 +30,7 @@
     <None Remove="ClientApp\src\app\datasource.model.ts" />
     <None Remove="ClientApp\src\app\product.model.ts" />
     <None Remove="ClientApp\src\app\repository.model.ts" />
+    <None Remove="ClientApp\src\app\stucture.directive.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -38,6 +39,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\datasource.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\product.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\repository.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\stucture.directive.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

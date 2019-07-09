@@ -12,6 +12,8 @@ export class ProductComponent {
 
   model: Model = new Model();
 
+  showTabel: boolean = true;
+
   getProduct(key: number): Product {
     return this.model.getProduct(key);
   }
