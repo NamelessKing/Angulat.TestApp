@@ -7,274 +7,82 @@
     border: 2px solid #6bc502
   }
 </style>
-<div class="m-2">
-  <form novalidate #form="ngForm" (ngSubmit)="submitForm(form)">
-    <div class="bg-danger p-a-1 m-b-1" *ngIf="formSubmitted && form.invalid">
-      There are problems with the form
-      <ul>
-        <li *ngFor="let error of getFormValidationMessages(form)">
-          {{error}}
-        </li>
-      </ul>
-    </div>
-    <div class="form-group">
-      <label>Name</label>
-      <input class="form-control"
-             name="name"
-             [(ngModel)]="newProduct.name"
-             #name="ngModel"
-             required
-             minlength="5"
-             pattern="^[A-Za-z ]+$" />
-      <ul class="text-danger list-unstyled" *ngIf="formSubmitted && name.invalid">
-        <li *ngFor="let error of getValidationMessages(name)">
-          {{error}}
-        </li>
-      </ul>
-    </div>
-    <div class="form-group">
-      <label>Category</label>
-      <input class="form-control"
-             name="category"
-             [(ngModel)]="newProduct.category"
-             #category="ngModel"
-             required
-             minlength="5"
-             pattern="^[A-Za-z ]+$" />
-      <ul class="text-danger list-unstyled" *ngIf="formSubmitted && category.invalid">
-        <li *ngFor="let error of getValidationMessages(category)">
-          {{error}}
-        </li>
-      </ul>
-    </div>
-    <div class="form-group">
-      <label>Price</label>
-      <input class="form-control"
-             name="price"
-             [(ngModel)]="newProduct.price"
-             #price="ngModel"
-             required
-             pattern="^[0-9\.]+$" />
-      <ul class="text-danger list-unstyled" *ngIf="formSubmitted && price.invalid">
-        <li *ngFor="let error of getValidationMessages(price)">
-          {{error}}
-        </li>
-      </ul>
-    </div>
-    <button class="btn btn-primary" type="submit"
-            [disabled]="formSubmitted && form.invalid"
-            [class.btn-secondary]="formSubmitted && form.invalid">
-      Create
-    </button>
-  </form>
-</div>
-
-
-<!--09/07/19-->
-<!--<style>
-  input.ng-dirty.ng-invalid {
-    border: 2px solid #ff0000;
-  }
-
-  input.ng-dirty.ng-valid {
-    border: 2px solid #4cff00;
-  }
-</style>
-
-{{jsonProduct}}
-<br />
-<form novalidate #form="ngForm" (ngSubmit)="submitForm(form)">
-
-  <div *ngIf="formSubmitted && form.invalid">There are problem to solve </div>
-
-  Name: <input class="form-control"
-               [(ngModel)]="newProduct.name"
+<div class=" m-2">
+  <div class="col-6">
+    <form novalidate #form="ngForm" (ngSubmit)="submitForm(form)">
+      <div class="bg-danger p-a-1 m-b-1" *ngIf="formSubmitted && form.invalid">
+        There are problems with the form
+        <ul>
+          <li *ngFor="let error of getFormValidationMessages(form)">
+            {{error}}
+          </li>
+        </ul>
+      </div>
+      <div class="form-group">
+        <label>Name</label>
+        <input class="form-control"
                name="name"
+               [(ngModel)]="newProduct.name"
                #name="ngModel"
                required
                minlength="5"
-               pattern="^[A-Za-z]+$" />
-  <br />-->
-<!--<ul class="text-danger" *ngIf="name.dirty && name.invalid">
-
-  <li *ngIf="name.errors.required">
-    Entry a name
-  </li>
-  <li *ngIf="name.errors.pattern">
-    Name can contain only letters
-  </li>
-  <li *ngIf="name.errors.minlength">
-    Minlength must be {{name.errors.minlength.requiredLength}}
-  </li>
-
-</ul>-->
-<!--<ul class="text-danger" *ngIf="(formSubmitted || name.dirty) && name.invalid">
-  <li *ngFor="let error of getValidationMessages(name)">
-    {{error}}
-  </li>
-</ul>-->
-<!--Category: <input class="form-control" [(ngModel)]="newProduct.category" />
-<br />
-Price: <input class="form-control" [(ngModel)]="newProduct.price" />
-<br />-->
-<!--<button class="btn btn-primary"
-          type="submit"
-          [disabled]="formSubmitted && form.invalid"
-          [class.btn-secondary]="formSubmitted && form.invalid">
-    Create
-  </button>
-
-</form>-->
-<!-- 08/09/19 -->
-<!--There are {{getProductCount()}} products
-
-<div *ngIf="getProductCount()>4">
-  more then 4 products
-</div>
-
-<div *ngIf="getProductByPosition(0).name != 'Kayak'">
-  Il primo non e kayak
-</div>
-
-<div [ngSwitch]="getProductCount()">
-
-  <span *ngSwitchCase="2">ci sono 2 prodotti</span>
-  <span *ngSwitchCase="5">ci sono 5 prodotti</span>
-  <span *ngSwitchDefault>caso di default</span>
-
-</div>-->
-<!--<div class="m-2">
-
-
-  <div class="bg-info">
-    Selected Product:{{selectedProduct || '(None)'}}
+               pattern="^[A-Za-z ]+$" />
+        <ul class="text-danger list-unstyled" *ngIf="formSubmitted && name.invalid">
+          <li *ngFor="let error of getValidationMessages(name)">
+            {{error}}
+          </li>
+        </ul>
+      </div>
+      <div class="form-group">
+        <label>Category</label>
+        <input class="form-control"
+               name="category"
+               [(ngModel)]="newProduct.category"
+               #category="ngModel"
+               required
+               minlength="5"
+               pattern="^[A-Za-z ]+$" />
+        <ul class="text-danger list-unstyled" *ngIf="formSubmitted && category.invalid">
+          <li *ngFor="let error of getValidationMessages(category)">
+            {{error}}
+          </li>
+        </ul>
+      </div>
+      <div class="form-group">
+        <label>Price</label>
+        <input class="form-control"
+               name="price"
+               [(ngModel)]="newProduct.price"
+               #price="ngModel"
+               required
+               pattern="^[0-9\.]+$" />
+        <ul class="text-danger list-unstyled" *ngIf="formSubmitted && price.invalid">
+          <li *ngFor="let error of getValidationMessages(price)">
+            {{error}}
+          </li>
+        </ul>
+      </div>
+      <button class="btn btn-primary" type="submit"
+              [disabled]="formSubmitted && form.invalid"
+              [class.btn-secondary]="formSubmitted && form.invalid">
+        Create
+      </button>
+    </form>
   </div>
-
-  <table class="table table-bordered text-dark">
-
-    <tr>
-      <th></th>
-      <th>Name</th>
-      <th>Category</th>
-      <th>Price</th>
-    </tr>
-
-    <tr *ngFor="let item of getProducts(); let i = index;"
-        [class.bg-info]="getSelected(item)">
-
-
-      <td (mouseover)="selectedProduct = item.name"> {{i + 1}}</td>
-      <td>{{item.name}}</td>
-      <td>{{item.category}}</td>
-      <td>{{item.price}}</td>
-    </tr>
-
-  </table>-->
-<!--<div class="form-group">
-  <label>Product name:</label>
-  <input (input)="selectedProduct = $event.target.value"/>
-</div>-->
-<!--<div class="form-group">
-  <label>Product name:</label>
-  <input #product class="form-control" (input)="false" />
-</div>-->
-<!--<div class="form-group">
-  <label>Product name:</label>
-  <input (input)="selectedProduct = $event.target.value"
-         [value]="selectedProduct || ''" />
-</div>
-
-<div class="form-group">
-  <label>Product name:</label>
-  <input (input)="selectedProduct = $event.target.value"
-         [value]="selectedProduct || ''" />
-</div>-->
-<!--<div class="form-group">
-    <label>Product name:</label>
-    <input [(ngModel)]="selectedProduct" />
+  <div class="col-6">
+    <table class="table table-sm table-bordered ">
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Price</th>
+      </tr>
+      <tr *ngFor="let item of getProducts(); let i = index" pa-attr>
+        <td>{{i + 1}}</td>
+        <td>{{item.name}}</td>
+        <td pa-attr pa-attr-class="bg-info">{{item.category}}</td>
+        <td>{{item.price}}</td>
+      </tr>
+    </table>
   </div>
-
-  <div class="form-group">
-    <label>Product name:</label>
-    <input (input)="selectedProduct = $event.target.value"
-           [value]="selectedProduct || ''" />
-  </div>
-
-
-
-</div>-->
-<!--Counter:{{counter = counter + 1}}-->
-<!--Next product: {{nextProduct.name}}-->
-<!--The rounded price is {{Math.floor(getProduct(1).price)}}-->
-<!--The rounded price is {{getProductPrice(1)}}-->
-<!--  -->
-<!--<table class="table table-bordered text-dark">
-
-  <tr>
-    <th></th>
-    <th>Name</th>
-    <th>Category</th>
-    <th>Price</th>
-  </tr>
-
-  <ng-template
-      ngFor
-      let-item
-      [ngForOf]="getProducts()"
-      let-i="index"
-      let-odd="odd">
-
-    <tr>
-      <td>{{i + 1}}</td>
-    </tr>
-
-  </ng-template>
-
-
-</table>-->
-<!--<div class="text-white m-2">
-  <div [ngClass]="getClassesByPosition(0)">
-    The first product is {{getProductByPosition(0).name}}.
-  </div>
-  <div [ngClass]="getClassesByPosition(1)">
-    The second product is {{getProductByPosition(1).name}}
-  </div>
-</div>-->
-<!--<div class="bg-info text-white m-2 p-2">
-
-  There are {{ model.getProducts().length }} products in model
-
 </div>
-
-
-<div [ngClass]="'text-white m-2 p-2 ' + getClasses()">
-  mynigga!
-</div>
-
-<div ngClass="getClasses()">
-  mynigga!
-</div>-->
-<!-- One way su attributi html -->
-<!--<input class="form-control" [value] = "model.getProduct(1)?.name || 'none' "/>
-
-
-
-<div>{{ model.getProduct(1)?.name || 'none'  }}</div>
-
-
-<div [ngClass]="getClassMap(1)">
-  {{model.getProduct(1).name}}
-</div>
-
-
-<div [ngClass]="getClassMap(2)">
-  {{model.getProduct(2).name}}
-</div>
-
-<div class="p-2 bg-warning">
-  <span [ngStyle]="getStyles(1)" >first</span>
-</div>
-
-<div class="p-2 bg-warning">
-  <span [ngStyle]="getStyles(2)">second</span>
-</div>-->
