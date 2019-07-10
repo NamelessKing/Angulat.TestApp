@@ -15,6 +15,8 @@ import { ProductComponent } from './component';
 import { PaAttrDirective } from "./attr.directive";
 import { PaStructureDirective } from './stucture.directive';
 import { PaIteratorDirective } from './iterator.directive';
+import { PaCellColor } from './cellColor.directive';
+import { PaCellColorSwitcher } from './cellColorSwitcher';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { PaIteratorDirective } from './iterator.directive';
     ProductComponent,
     PaAttrDirective,
     PaStructureDirective,
-    PaIteratorDirective
+    PaIteratorDirective,
+    PaCellColor,
+    PaCellColorSwitcher
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

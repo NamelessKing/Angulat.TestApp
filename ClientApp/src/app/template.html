@@ -92,7 +92,14 @@
       </label>
     </div>
 
-    <table *paIf="showTable" class="table table-sm table-bordered table-striped">
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" [(ngModel)]="darkColor" />
+        Dark Color Cell
+      </label>
+    </div>
+
+    <table *paIf="showTable" [paCellDarkColor]="darkColor" class="table table-sm table-bordered table-striped">
       <tr>
         <th></th>
         <th>Name</th>
