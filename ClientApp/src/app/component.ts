@@ -12,7 +12,7 @@ export class ProductComponent {
 
   model: Model = new Model();
 
-  showTabel: boolean = true;
+  showTable: boolean = true;
 
   getProduct(key: number): Product {
     return this.model.getProduct(key);

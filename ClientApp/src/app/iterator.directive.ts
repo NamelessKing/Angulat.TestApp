@@ -15,6 +15,16 @@ export class PaIteratorDirective {
   dataSource: any;
 
   ngOnInit() {
+    this.updateContent();
+  }
+
+  ngDoCheck() {
+    //console.log("ngDoCheck called");
+    this.updateContent();
+  }
+
+
+  private updateContent() {
     this.container.clear();
 
     for (let i = 0; i < this.dataSource.length; i++) {
@@ -22,6 +32,7 @@ export class PaIteratorDirective {
         (this.child, new PaIteratorContext(this.dataSource[i], i, this.dataSource.length));
     }
   }
+
 }
 
 
