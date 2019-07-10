@@ -7,20 +7,22 @@
     border: 2px solid #6bc502
   }
 </style>
+
 <div class=" m-2">
   <div class="col-4">
+
     <form novalidate #form="ngForm"
           (ngSubmit)="submitForm(form)">
-      <div class="bg-danger p-a-1 m-b-1" *ngIf="formSubmitted
-&& form.invalid">
+
+      <div class="bg-danger p-a-1 m-b-1" *ngIf="formSubmitted && form.invalid">
         There are problems with the form
         <ul>
-          <li *ngFor="let error of
-getFormValidationMessages(form)">
+          <li *ngFor="let error of getFormValidationMessages(form)">
             {{error}}
           </li>
         </ul>
       </div>
+
       <div class="form-group">
         <label>Name</label>
         <input class="form-control"
@@ -32,12 +34,12 @@ getFormValidationMessages(form)">
                pattern="^[A-Za-z ]+$" />
         <ul class="text-danger list-unstyled"
             *ngIf="formSubmitted && name.invalid">
-          <li *ngFor="let error of
-getValidationMessages(name)">
+          <li *ngFor="let error of getValidationMessages(name)">
             {{error}}
           </li>
         </ul>
       </div>
+
       <div class="form-group">
         <label>Category</label>
         <input class="form-control"
@@ -49,12 +51,12 @@ getValidationMessages(name)">
                pattern="^[A-Za-z ]+$" />
         <ul class="text-danger list-unstyled"
             *ngIf="formSubmitted && category.invalid">
-          <li *ngFor="let error of
-getValidationMessages(category)">
+          <li *ngFor="let error of getValidationMessages(category)">
             {{error}}
           </li>
         </ul>
       </div>
+
       <div class="form-group">
         <label>Price</label>
         <input class="form-control"
@@ -65,45 +67,49 @@ getValidationMessages(category)">
                pattern="^[0-9\.]+$" />
         <ul class="text-danger list-unstyled"
             *ngIf="formSubmitted && price.invalid">
-          <li *ngFor="let error of
-getValidationMessages(price)">
+          <li *ngFor="let error of getValidationMessages(price)">
             {{error}}
           </li>
         </ul>
       </div>
+
       <button class="btn btn-primary"
               type="submit"
               [disabled]="formSubmitted && form.invalid"
-              [class.btn-secondary]="formSubmitted &&
-form.invalid">
+              [class.btn-secondary]="formSubmitted && form.invalid">
         Create
       </button>
+
     </form>
   </div>
 
   <div class="col-8">
+
     <div class="checkbox">
       <label>
         <input type="checkbox" [(ngModel)]="showTable" />
         Show Table
       </label>
     </div>
-    <table *paIf="showTable" class="table table-sm table-bordered
-table-striped">
+
+    <table *paIf="showTable" class="table table-sm table-bordered table-striped">
       <tr>
         <th></th>
         <th>Name</th>
         <th>Category</th>
         <th>Price</th>
+        <th></th>
       </tr>
-      <tr *paFor="let item of getProducts(); let i = index; let odd =
-odd; let even = even" [class.bg-info]="odd"
+      <tr *paFor="let item of getProducts(); let i = index; let odd = odd; let even = even"
+          [class.bg-info]="odd"
           [class.bg-warning]="even">
         <td>{{i + 1}}</td>
         <td>{{item.name}}</td>
         <td>{{item.category}}</td>
         <td>{{item.price}}</td>
+        <td><button class="btn btn-danger" (click)="deleteProduct(item.id)">Delete</button></td>
       </tr>
     </table>
+
   </div>
 </div>

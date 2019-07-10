@@ -34,6 +34,10 @@ export class ProductComponent {
 
   }
 
+  deleteProduct(key:number) {
+    this.model.deleteProduct(key);
+  }
+
   getValidationMessages(state: any, thingName?: string) {
     let thing: string = state.path || thingName;
     let messages: string[] = [];
