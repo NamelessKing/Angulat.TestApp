@@ -1,6 +1,7 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, ViewChildren, QueryList } from "@angular/core";
 import { Model } from "./repository.model";
 import { Product } from "./product.model";
+import { PaCellColor } from "./cellColor.directive";
 
 @Component({
   selector: "paProductTable",
@@ -8,7 +9,8 @@ import { Product } from "./product.model";
 })
 export class ProductTableComponent {
 
-  @Input("model") dataModel: Model;
+  @Input("model")
+  dataModel: Model;
 
 
   getProduct(key: number): Product {
@@ -24,6 +26,18 @@ export class ProductTableComponent {
     this.dataModel.deleteProduct(key);
   }
 
+  //Query sul contenuto del template(associato)
+  @ViewChildren(PaCellColor)
+  viewChildren: QueryList<PaCellColor>;
+
+  ngAfterViewInit() {
+    setInterval(() => {
+      this.viewChildren.forEach((child, index) => {
+        child.setColor(index % 2 ? true : false);
+      })
+    },0)
+    
+  }
 
 
 }

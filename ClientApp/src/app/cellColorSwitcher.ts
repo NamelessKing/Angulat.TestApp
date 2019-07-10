@@ -7,11 +7,9 @@ import { PaCellColor } from "./cellColor.directive";
 
 export class PaCellColorSwitcher {
 
-  @Input("paCellDarkColor")
-  modelProperty: boolean;
+  @Input("paCellDarkColor") modelProperty: boolean;
 
-  @ContentChild(PaCellColor)
-  contentChild: PaCellColor;
+  @ContentChild(PaCellColor) contentChild: PaCellColor;
 
 
   ngOnChanges(changes: {[property:string]: SimpleChange}) {

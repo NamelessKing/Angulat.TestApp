@@ -3,7 +3,8 @@ import { Product } from "./product.model";
 import { NgForm } from "@angular/forms";
 @Component({
   selector: "paProductForm",
-  templateUrl: "productForm.component.html"
+  templateUrl: "productForm.component.html",
+  styleUrls: ["productForm.component.css"]
 })
 export class ProductFormComponent {
 

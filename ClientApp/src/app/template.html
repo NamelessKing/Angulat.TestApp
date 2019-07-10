@@ -2,16 +2,21 @@
 
 
   <div class="col-4">
-    <paProductForm (paNewProduct)="addProduct($event)">
-      
-    </paProductForm>
+    <paToggleView>
+      <paProductForm (paNewProduct)="addProduct($event)">
+
+      </paProductForm>
+    </paToggleView>
   </div>
 
 
   <div class="col-8">
-    <paProductTable [model]="model">
 
-    </paProductTable>
+    <paToggleView>
+
+      <paProductTable [model]="model"></paProductTable>
+
+    </paToggleView>
   </div>
 
 
