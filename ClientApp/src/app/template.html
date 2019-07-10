@@ -2,12 +2,16 @@
 
 
   <div class="col-4">
-    Form
+    <paProductForm (paNewProduct)="addProduct($event)">
+      
+    </paProductForm>
   </div>
 
 
   <div class="col-8">
-    Table
+    <paProductTable [model]="model">
+
+    </paProductTable>
   </div>
 
 
