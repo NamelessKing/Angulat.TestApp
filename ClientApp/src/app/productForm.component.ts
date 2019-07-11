@@ -1,22 +1,23 @@
 import { Component, Output, EventEmitter } from "@angular/core";
 import { Product } from "./product.model";
 import { NgForm } from "@angular/forms";
+import { Model } from "./repository.model";
 @Component({
   selector: "paProductForm",
   templateUrl: "productForm.component.html",
-  styleUrls: ["productForm.component.css"]
+  //styleUrls: ["productForm.component.css"]
 })
 export class ProductFormComponent {
 
   newProduct: Product = new Product();
   formSubmitted: boolean = false;
 
-  @Output("paNewProduct") newProductEvent = new EventEmitter<Product>();
+  constructor(private model: Model) { }
 
   submitForm(form: any) {
     this.formSubmitted = true;
     if (form.valid) {
-      this.newProductEvent.emit(this.newProduct);
+      this.model.saveProduct(this.newProduct)
       this.newProduct = new Product();
       form.reset();
       this.formSubmitted = false;

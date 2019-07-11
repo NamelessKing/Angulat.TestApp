@@ -20,6 +20,15 @@ import { PaCellColorSwitcher } from './cellColorSwitcher';
 import { ProductTableComponent } from './productTable.component';
 import { ProductFormComponent } from './productForm.component';
 import { PaToggleView } from './toggleView.component';
+import { PaAddTaxPipe } from './addTax.pipe';
+import { PaCategoryFilterPipe } from './categoryFilter.pipe';
+import { PaDiscountDisplayComponent } from './dicountDisplay.component';
+import { PaDiscountEditorComponent } from './discountEditor.component';
+import { DiscountService } from './discount.service';
+import { PaDiscountPipe } from './discount.pipe';
+import { SimpleDataSource } from './datasource.model';
+import { Model } from './repository.model';
+import { LogService, LOG_SERVICE, SpecialLogService } from './log.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +45,12 @@ import { PaToggleView } from './toggleView.component';
     PaCellColorSwitcher,
     ProductTableComponent,
     ProductFormComponent,
-    PaToggleView
+    PaToggleView,
+    PaAddTaxPipe,
+    PaCategoryFilterPipe,
+    PaDiscountDisplayComponent,
+    PaDiscountEditorComponent,
+    PaDiscountPipe
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -48,7 +62,10 @@ import { PaToggleView } from './toggleView.component';
       { path: 'fetch-data', component: FetchDataComponent },
     ])
   ],
-  providers: [],
+  providers: [DiscountService, SimpleDataSource, Model, {
+    provide: LOG_SERVICE,
+    useClass: SpecialLogService
+  }],
   bootstrap: [ProductComponent]
 })
 export class AppModule { }
