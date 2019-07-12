@@ -28,7 +28,15 @@ import { DiscountService } from './discount.service';
 import { PaDiscountPipe } from './discount.pipe';
 import { SimpleDataSource } from './datasource.model';
 import { Model } from './repository.model';
-import { LogService, LOG_SERVICE, SpecialLogService } from './log.service';
+import { LogService, LOG_SERVICE, SpecialLogService, LogLevel, LOG_LEVEL } from './log.service';
+
+
+
+//utilizzo di un value provaider
+//let logger = new LogService();
+//logger.minimumLevel = LogLevel.DEBUG;
+
+
 
 @NgModule({
   declarations: [
@@ -62,10 +70,37 @@ import { LogService, LOG_SERVICE, SpecialLogService } from './log.service';
       { path: 'fetch-data', component: FetchDataComponent },
     ])
   ],
-  providers: [DiscountService, SimpleDataSource, Model, {
-    provide: LOG_SERVICE,
-    useClass: SpecialLogService
-  }],
+  providers: [DiscountService, SimpleDataSource, Model,
+    //{
+    //  provide: LOG_SERVICE,
+    //  useClass: SpecialLogService,
+    //  multi: true
+    //},
+    //{
+    //  provide: LOG_SERVICE,
+    //  useClass: LogService,
+    //  multi: true
+    //}
+    //{
+    //  provide: LogService,
+    //  useValue: logger
+    //}
+    { provide: LOG_LEVEL, useValue: LogLevel.DEBUG },
+    { provide: "debugLevel", useExisting: LOG_LEVEL},
+    {
+      provide: LogService,
+      deps: [LOG_LEVEL],
+      useFactory: (level) => {
+
+        console.log("in factory method");
+
+        let logger = new LogService();
+        logger.minimumLevel = level;
+        return logger;
+      }
+    }
+
+  ],
   bootstrap: [ProductComponent]
 })
 export class AppModule { }

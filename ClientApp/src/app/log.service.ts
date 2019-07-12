@@ -1,6 +1,7 @@
 import { Injectable, InjectionToken } from "@angular/core";
 
 export const LOG_SERVICE = new InjectionToken("logger"); 
+export const LOG_LEVEL = new InjectionToken("log_level"); 
 
 
 export enum LogLevel {
@@ -41,8 +42,7 @@ export class SpecialLogService extends LogService {
   }
   logMessage(level: LogLevel, message: string) {
     if (level >= this.minimumLevel) {
-      console.log(`Special Message (${LogLevel[level]}):
-${message}`);
+      console.log(`Special Message (${LogLevel[level]}):${message}`);
     }
   }
 }

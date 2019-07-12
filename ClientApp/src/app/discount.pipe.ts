@@ -16,12 +16,6 @@ export class PaDiscountPipe implements PipeTransform {
 
   transform(price: number): number {
 
-    //let transformedValue = Number.parseFloat(value); // implement your transformation logic here
-    //let rateNumber = args == undefined ? this.defaultRate : Number.parseInt(args);
-
-    //return transformedValue + (transformedValue * (rateNumber / 100));
     return this.disc.applyDiscount(price);
-
-
   }
 }
